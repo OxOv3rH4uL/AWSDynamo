@@ -47,7 +47,7 @@ if TABLE_NAME not in tables:
 
 #Some Sample Datas
 table = boto3.resource('dynamodb').Table(TABLE_NAME)
-
+table.wait_until_exists()
 print("ADDING ITEMS")
 table.put_item(
     Item={
