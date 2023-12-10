@@ -1,4 +1,5 @@
 #Please run the script 2 times , idk why the f it is working on the 2nd time but not on the first time
+#The above issue is fixed.
 import boto3
 
 with open('creds', 'r') as f:
