@@ -1,3 +1,4 @@
+#Please run the script 2 times , idk why the f it is working on the 2nd time but not on the first time
 import boto3
 
 with open('creds', 'r') as f:
@@ -16,8 +17,8 @@ print("LIST OF TABLES")
 tables = db.list_tables()['TableNames']
 print(tables)
 
-TABLE_NAME = "workers"
-PRIMARY_KEY = "workers_id"
+TABLE_NAME = <YOUR TABLE NAME HERE>
+PRIMARY_KEY = <YOUR PRIMARY KEY HERE>
 
 if TABLE_NAME not in tables:
     print("Creating Table...")
@@ -32,6 +33,7 @@ if TABLE_NAME not in tables:
         AttributeDefinitions=[
             {
                 'AttributeName': PRIMARY_KEY,
+                #Change the datatype of the table here
                 'AttributeType': 'S'
             }
         ],
@@ -43,6 +45,7 @@ if TABLE_NAME not in tables:
     print("Table Created Successfully!")
 
 
+#Some Sample Datas
 table = boto3.resource('dynamodb').Table(TABLE_NAME)
 
 print("ADDING ITEMS")
@@ -65,32 +68,3 @@ res = table.scan()
 for item in res["Items"]:
     print(item)
 
-
-# print(table.item_count)
-
-# res = table.get_item(
-# 	Key={
-# 		'emp_id':"2"
-# 	}
-# )
-
-
-# print(res["Item"])
-
-
-# table = db.Table("test")
-# table.put_item(
-# 	Item={
-# 		'emp_id':"2",
-# 		'name':"SIN_GREED",
-# 		'age':"19"
-# 	}
-# )
-
-# res = table.get_item(
-# 	Key={
-# 		'emp_id': "2"
-# 	}
-# )
-
-# print(res['Item'])
